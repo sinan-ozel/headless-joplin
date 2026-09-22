@@ -9,6 +9,39 @@ The image tag is the Joplin version it contains (`headless-joplin:3.7.1`). The v
 
 See [docs/architecture.md](docs/architecture.md) for how it works.
 
+## Quick Start
+Start:
+```bash
+docker run -d \
+  --name joplin \
+  -p 41184:41184 \
+  -e JOPLIN_API_TOKEN=change-me-to-a-long-random-token \
+  -e JOPLIN_WEBDAV_SYNC_URL=http://webdav.example.local:8080 \
+  -e JOPLIN_WEBDAV_SYNC_PATH=/joplin \
+  -v joplin-profile:/data/profile \
+  headless-joplin:3.7.1
+```
+
+Check that it is up:
+```
+curl http://localhost:41184/ping
+# JoplinClipperServer
+```
+
+List notes:
+```
+curl "http://localhost:41184/notes?token=change-me-to-a-long-random-token"
+```
+
+
+Create a note:
+```
+curl -X POST "http://localhost:41184/notes?token=change-me-to-a-long-random-token" \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Hello from the API", "body": "This note was created headlessly."}'
+```
+
+
 ## Configuration
 
 Everything is set through environment variables — full reference, including `JOPLIN_E2EE_PASSWORD`, in [docs/configuration.md](docs/configuration.md).
