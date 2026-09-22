@@ -2,7 +2,7 @@ FROM node:22-slim
 
 # Single source of truth for the image version: the tag published to Docker Hub
 # is the Joplin version installed here. CI reads this line.
-ARG JOPLIN_VERSION=3.7.1
+ARG JOPLIN_VERSION=3.7.2
 
 # OCI build-time arguments — populated by CI.
 ARG VERSION
