@@ -1,0 +1,53 @@
+site_name: headless-joplin
+site_description: Headless Joplin with the Data API exposed on the network
+site_author: Sinan Ozel
+site_url: https://sinanozel.github.io/headless-joplin/
+
+repo_name: sinanozel/headless-joplin
+repo_url: https://github.com/sinanozel/headless-joplin
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  version:
+    provider: mike
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+nav:
+  - Home: index.md
+  - Configuration: configuration.md
+  - Architecture: architecture.md

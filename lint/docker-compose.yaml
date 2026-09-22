@@ -1,0 +1,9 @@
+services:
+  linter:
+    build:
+      context: ..
+      dockerfile: lint/Dockerfile
+    image: headless-joplin-lint:latest
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace

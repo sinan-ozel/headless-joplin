@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Testing
+.pytest_cache/
+
+# MkDocs build output
+site/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code (keep tasks.json — it's the shared dev workflow)
+.vscode/*
+!.vscode/tasks.json
+
+# JetBrains IDEs
+.idea/
+
+# Logs
+*.log

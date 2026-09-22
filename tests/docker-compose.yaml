@@ -1,0 +1,35 @@
+services:
+  joplin:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: joplin-headless
+    networks:
+      - test-network
+    environment:
+      - JOPLIN_API_TOKEN=test-token
+      # No JOPLIN_WEBDAV_SYNC_URL: sync stays disabled, the test only checks the API is up.
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"require('http').get('http://127.0.0.1:41184/ping',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))\""]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+  test:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    container_name: test-runner
+    depends_on:
+      joplin:
+        condition: service_healthy
+    environment:
+      - JOPLIN_API_URL=http://joplin:41184
+    command: pytest tests/
+    networks:
+      - test-network
+
+networks:
+  test-network:
+    driver: bridge
